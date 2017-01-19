@@ -1,17 +1,15 @@
 package FileHandler;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 
 public class MyFileReader {
     public static String read(String filename) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
+        FileInputStream fileInputStream = new FileInputStream(filename);
         String content="";
-        String line = bufferedReader.readLine();
-        while(line!=null){
-            content += line;
-            line=bufferedReader.readLine();
+        int charRead;
+        while((charRead=fileInputStream.read()) !=-1){
+            content += (char)charRead;
         }
         return content;
     }
